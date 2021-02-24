@@ -11,7 +11,7 @@ module.exports = {
   extends: [
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
+    // 'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
   ],
   rules: {
@@ -59,4 +59,4 @@ module.exports = {
     quotes: ['error', 'single'],
     'comma-dangle': ['error', 'never']
   }
-};
+}

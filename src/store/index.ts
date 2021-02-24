@@ -1,6 +1,5 @@
 import { InjectionKey } from 'vue'
 import { createStore, Store } from 'vuex'
-
 export interface State {
   count: number
 }
