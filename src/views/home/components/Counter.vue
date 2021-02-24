@@ -1,21 +1,20 @@
 <template>
-  <el-card shadow="hover">
-    <template #header> 使用 vuex 改变计数值 </template>
-    <Counter />
-  </el-card>
+  <div class="card-content">
+    <p class="count">{{ count }}</p>
+    <div class="btn-box">
+      <el-button type="primary" @click="inCrement"> + 1 </el-button>
+      <el-button @click="resetCrement">重置</el-button>
+    </div>
+  </div>
 </template>
 
 <script>
   import { defineComponent, computed } from 'vue'
   import { useStore } from 'vuex'
   import { key } from '/@/store'
-  import Counter from './components/Counter.vue'
 
   export default defineComponent({
     name: 'Home',
-    components: {
-      Counter
-    },
     setup() {
       const store = useStore(key)
 
