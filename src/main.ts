@@ -4,7 +4,8 @@ import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
 import { store, key } from './store'
 import App from './App.vue'
-import './index.css'
+import '/@/styles/reset.css'
+import '/@/styles/global.css'
 
 const app = createApp(App)
 app.use(store, key)

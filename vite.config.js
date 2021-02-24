@@ -12,7 +12,9 @@ module.exports = {
     // 别名，别名映射，2.0 版本不再需要以 / 结尾了
     alias: {
       '/@': path.resolve(__dirname, './src'),
-      '/@comps': path.resolve(__dirname, './src/components')
+      '/@comps': path.resolve(__dirname, './src/components'),
+      '/@assets': path.resolve(__dirname, './src/assets'),
+      '/@pages': path.resolve(__dirname, './src/views')
     }
   },
   // vite 现在不止是 vue 可以用，适配框架以插件的形式引入
