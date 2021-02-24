@@ -59,7 +59,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 17px;
       cursor: pointer;
       user-select: none;
 
@@ -67,6 +66,10 @@
         width: 36px;
         height: 36px;
         margin-right: 12px;
+      }
+
+      h3 {
+        font-size: 17px;
       }
     }
 

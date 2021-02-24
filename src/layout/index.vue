@@ -1,7 +1,9 @@
 <template>
   <div class="app-layout">
     <Header />
-    <router-view />
+    <div class="page">
+      <router-view />
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -16,5 +18,8 @@
 </script>
 <style lang="scss" scoped>
   .app-layout {
+    .page {
+      padding: 24px;
+    }
   }
 </style>

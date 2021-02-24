@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '/@/layout/index.vue'
-import HelloWorld from '/@/components/HelloWorld.vue'
+import HelloWorld from '/@pages/home/index.vue'
 import FormPage from '/@pages/form/index.vue'
 
 const routes: Array<RouteRecordRaw> = [

@@ -3,17 +3,15 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent, ref } from 'vue'
 
   export default defineComponent({
     name: 'About',
     setup() {
-      const state = {
-        msg: 'About Page'
-      }
+      const msg = ref('About Page')
 
       return {
-        state
+        msg
       }
     }
   })
