@@ -8,7 +8,7 @@
     <a href="https://www.typescriptlang.org/zh/">Typescript4</a>、
     <a href="https://echarts.apache.org/zh/index.html">Echarts5</a>、
     <a href="https://element-plus.org/#/zh-CN">Element-plus</a>、
-    <a href="http://axios-js.com/zh-cn/docs/index.html">Axios</a>、
+    <a href="http://axios-js.com/zh-cn/docs/index.html">Axios</a>
   </p>
 </template>
 
