@@ -1,5 +1,5 @@
 <template>
-  <div class="card-content">
+  <div class="counter-box">
     <p class="count">{{ count }}</p>
     <div class="btn-box">
       <el-button type="primary" @click="inCrement"> + 1 </el-button>
@@ -29,7 +29,7 @@
   })
 </script>
 <style lang="scss" scoped>
-  .card-content {
+  .counter-box {
     display: flex;
     flex-direction: column;
     align-items: center;

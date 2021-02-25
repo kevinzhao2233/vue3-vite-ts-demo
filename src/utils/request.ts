@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { store, key } from '../store'
+import { store } from '../store'
 import log from '../utils/log'
 
 // 创建axios的实例
@@ -13,7 +13,6 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // 让请求携带令牌，有些后端可能并不使用 Authorization 头部，则需要在这里改掉
-    log.print('token、key', 'default', true, { token: store.getters.token, key })
     if (store.getters.token) {
       config.headers.Authorization = store.getters.token
     }
@@ -55,7 +54,7 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    log.pretty('axios response error', error?.config?.url, 'danger', error?.toJSON() || error)
+    log.pretty('response error', error?.config?.url, 'danger', error?.toJSON() || error)
     ElMessage({
       message: error.message || 'Error',
       duration: 5000,

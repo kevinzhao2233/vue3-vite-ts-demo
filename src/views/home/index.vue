@@ -1,44 +1,32 @@
 <template>
-  <el-card shadow="hover">
+  <el-card class="card" shadow="hover">
     <template #header> 使用 vuex 改变计数值 </template>
     <Counter />
+  </el-card>
+  <el-card class="card" shadow="hover">
+    <template #header> 使用 axios 搜索网易云歌曲 </template>
+    <Music />
   </el-card>
 </template>
 
 <script>
-  import { defineComponent, computed } from 'vue'
-  import { useStore } from 'vuex'
-  import { key } from '/@/store'
+  import { defineComponent } from 'vue'
   import Counter from './components/Counter.vue'
+  import Music from './components/Music.vue'
 
   export default defineComponent({
     name: 'Home',
     components: {
-      Counter
+      Counter,
+      Music
     },
     setup() {
-      const store = useStore(key)
-
-      const count = computed(() => store.state.count)
-
-      return {
-        count,
-        inCrement: () => store.commit('increment'),
-        resetCrement: () => store.commit('reset')
-      }
+      return {}
     }
   })
 </script>
 <style lang="scss" scoped>
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .count {
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
+  .card {
+    margin-bottom: 24px;
   }
 </style>
