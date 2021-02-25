@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '/@/layout/index.vue'
 import HelloWorld from '/@pages/home/index.vue'
-import FormPage from '/@pages/form/index.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,16 +13,11 @@ const routes: Array<RouteRecordRaw> = [
         component: HelloWorld
       },
       {
-        path: '/form',
-        name: 'form',
-        component: FormPage
+        path: '/about',
+        name: 'About',
+        component: () => import('/@pages/about/index.vue')
       }
     ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('/@/components/About.vue')
   }
 ]
 

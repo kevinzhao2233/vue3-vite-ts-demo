@@ -26,10 +26,6 @@
       const proTitle = ref('Vue3 + Vite2 + TS + Vuex 尝试项目')
       const navList = reactive<Nav[]>([
         {
-          name: '表单页',
-          route: '/form'
-        },
-        {
           name: '关于',
           route: '/about'
         }
