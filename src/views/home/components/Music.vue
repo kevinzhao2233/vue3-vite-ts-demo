@@ -4,7 +4,7 @@
       v-model="keywords"
       placeholder="输入想要搜索的歌名"
       clearable
-      style="width: 300px; margin-right: 24px"
+      style="width: 300px; margin-right: 24px;"
       @keypress.enter="fetchMusic"
     />
     <el-button type="primary" @click="fetchMusic">搜索</el-button>
@@ -61,9 +61,9 @@
     height: 220px;
     padding: 4px 0;
     margin-top: 24px;
+    overflow: auto;
     border: 1px solid #eeeeee;
     border-radius: 4px;
-    overflow: auto;
     .list-item {
       display: flex;
       align-items: center;

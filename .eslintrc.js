@@ -16,6 +16,14 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'vue/custom-event-name-casing': 'off',
+    'vue/max-attributes-per-line': ['error', {
+      'singleline': 3,
+      'multiline': {
+        'max': 1,
+        'allowFirstLine': false
+      }
+    }],
+    'vue/singleline-html-element-content-newline': 'off',
     'no-use-before-define': 'off',
     // 'no-use-before-define': [
     //   'error',

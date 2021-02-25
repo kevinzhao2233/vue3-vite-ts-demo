@@ -1,13 +1,26 @@
 <template>
   <div class="layout-header">
-    <div class="logo" @click="gotoPage({ name: '首页', route: '/' })">
-      <img src="/src/assets/vite-logo.svg" alt="logo" />
+    <div
+      class="logo"
+      @click="gotoPage({ name: '首页', route: '/' })"
+    >
+      <img
+        src="/src/assets/vite-logo.svg"
+        alt="logo"
+      >
       <h3>{{ proTitle }}</h3>
     </div>
     <ul class="nav-box">
-      <li v-for="item in navList" :key="item.route" class="nav-item" @click="gotoPage(item)">{{
-        item.name
-      }}</li>
+      <li
+        v-for="item in navList"
+        :key="item.route"
+        class="nav-item"
+        @click="gotoPage(item)"
+      >
+        {{
+          item.name
+        }}
+      </li>
     </ul>
   </div>
 </template>
@@ -75,10 +88,10 @@
       height: 100%;
 
       .nav-item {
-        line-height: 60px;
         height: 100%;
-        margin-left: 24px;
         padding: 0 12px;
+        margin-left: 24px;
+        line-height: 60px;
         cursor: pointer;
 
         &:hover {

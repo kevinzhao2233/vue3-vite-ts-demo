@@ -23,7 +23,3 @@
     }
   })
 </script>
-<style lang="scss" scoped>
-  .swiper-box {
-  }
-</style>
