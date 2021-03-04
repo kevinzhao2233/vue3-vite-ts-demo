@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { store } from '../store'
-import log from '../utils/log'
+import log from 'b-pretty-log'
 
 // 创建axios的实例
 const service = axios.create({
@@ -20,7 +20,7 @@ service.interceptors.request.use(
   },
   (error) => {
     ElMessage.error(error?.message || '请求格式错误')
-    log.pretty('request error', error.url, 'danger', error)
+    log.pretty('request error', error.url, error, 'danger')
     return Promise.reject(error)
   }
 )
@@ -30,7 +30,7 @@ service.interceptors.response.use(
   (response) => {
     const res = response.data
     // 每个请求都打印出来，方便调试
-    log.print('resInfo', 'success', true, response)
+    log('resInfo', response, 'success', true)
 
     // 判断自定义 code 值，需要跟后端协商，可能是其他值
     if (+res.code !== 200) {
