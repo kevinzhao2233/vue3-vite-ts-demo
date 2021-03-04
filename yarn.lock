@@ -560,10 +560,10 @@ axios@^0.21.1:
   dependencies:
     follow-redirects "^1.10.0"
 
-b-pretty-log@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/b-pretty-log/-/b-pretty-log-0.1.0.tgz#2527b2d895ec0602d4cb611ab373395060bf80f4"
-  integrity sha512-2JR2AZAKNhthLyAh0S6Z3yAQWjS4c4dhPRnUO/kmAsCSbdPP/OwT0HotudussJweM/jXp+dYwd2dG8gmzAixhw==
+b-pretty-log@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/b-pretty-log/download/b-pretty-log-0.2.0.tgz#61eb426402e7eeb3f4763b3dc40a7109bca05c0c"
+  integrity sha1-YetCZALn7rP0djs9xApxCbygXAw=
 
 bail@^1.0.0:
   version "1.0.5"

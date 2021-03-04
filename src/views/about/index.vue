@@ -14,16 +14,14 @@
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
-  // import log from '/@/utils/log';
   import log from 'b-pretty-log';
 
   export default defineComponent({
     name: 'About',
     setup() {
       const msg = ref('关于页')
-      log('默认', '详细内容')
-      log.success('chen', 'fsdf')
-      log.pretty('默认', '函数调用位置', 'default')
+
+      log('info', '进入 /about 页面', 'info', true)
 
       return {
         msg

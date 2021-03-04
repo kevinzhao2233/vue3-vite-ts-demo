@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "b-pretty-log": "^0.1.0",
+    "b-pretty-log": "^0.2.0",
     "echarts": "^5.0.2",
     "element-plus": "^1.0.2-beta.32",
     "swiper": "^6.4.15",
