@@ -25,21 +25,7 @@ module.exports = {
     }],
     'vue/singleline-html-element-content-newline': 'off',
     'no-use-before-define': 'off',
-    // 'no-use-before-define': [
-    //   'error',
-    //   {
-    //     functions: false,
-    //     classes: true,
-    //   },
-    // ],
     '@typescript-eslint/no-use-before-define': 'off',
-    // '@typescript-eslint/no-use-before-define': [
-    //   'error',
-    //   {
-    //     functions: false,
-    //     classes: true,
-    //   },
-    // ],
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',

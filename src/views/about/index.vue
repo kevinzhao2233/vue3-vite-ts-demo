@@ -21,7 +21,7 @@
     setup() {
       const msg = ref('关于页')
 
-      log('info', '进入 /about 页面', 'info', true)
+      log('info', 'Component is mounted')
 
       return {
         msg
