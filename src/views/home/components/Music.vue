@@ -30,7 +30,7 @@
     setup() {
       const keywords = ref('干饭人之歌')
 
-      let list = reactive({ songs: [] })
+      let list = reactive({ songs: []})
 
       const loading = ref(true)
 
