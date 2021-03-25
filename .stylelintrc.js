@@ -13,7 +13,7 @@ module.exports = {
     // 禁止在速记属性中使用冗余值（可自动修复） padding:10px 10px 10px; 需写成 padding: 10px;
     'shorthand-property-no-redundant-values': true,
     // 不允许属性值带供应商前缀   如：display: -webkit-flex;
-    'value-no-vendor-prefix': true,
+    'value-no-vendor-prefix': null,
     // 禁止将可合并的属性分开写，如分别写padding-[left|right|top|bottom],但如果四个少一个的话可以分开写，如只写 right, left,top
     'declaration-block-no-redundant-longhand-properties': true,
     // 一行可显示属性个数

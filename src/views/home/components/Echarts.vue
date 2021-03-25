@@ -11,10 +11,8 @@
     setup() {
       const container = ref<HTMLElement | null>(null)
       let chart = null
-
       onMounted(() => {
         chart = echarts.init(container.value as HTMLElement)
-        console.log(chart)
         chart.setOption({
           color: ['#409eff'],
           title: {
