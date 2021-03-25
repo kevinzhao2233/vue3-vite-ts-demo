@@ -1,8 +1,8 @@
 /**
  * Vite 中文文档 https://cn.vitejs.dev/
  */
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
 
 module.exports = {
   server: {
@@ -21,5 +21,7 @@ module.exports = {
     }
   },
   // vite 现在不止是 vue 可以用，适配框架以插件的形式引入
-  plugins: [vue()]
-}
+  plugins: [
+    vue()
+  ]
+};
