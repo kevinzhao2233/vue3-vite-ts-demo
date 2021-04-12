@@ -7,7 +7,7 @@ import path from 'path';
 module.exports = {
   server: {
     // 开发服务端口
-    port: 8111,
+    port: 10000,
     // 是否开启 https, 但是开启了也没有证书，只在有些功能必须要 https 协议时使用即可
     https: false
   },
