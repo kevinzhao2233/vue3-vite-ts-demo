@@ -20,7 +20,7 @@ module.exports = {
       '/@pages': path.resolve(__dirname, './src/views')
     }
   },
-  // vite 现在不止是 vue 可以用，适配框架以插件的形式引入
+  // vite2.x 不止是 vue 可以用，适配框架以插件的形式引入
   plugins: [
     vue()
   ]
