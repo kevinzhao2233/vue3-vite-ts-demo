@@ -14,15 +14,15 @@
   "dependencies": {
     "axios": "^0.21.1",
     "b-pretty-log": "^0.2.2",
-    "echarts": "^5.0.2",
+    "echarts": "^5.1.0",
     "element-plus": "^1.0.2-beta.32",
-    "swiper": "^6.5.6",
+    "swiper": "^6.5.7",
     "vue": "^3.0.11",
     "vue-router": "^4.0.6",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "@types/swiper": "^5.4.2",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
@@ -30,13 +30,13 @@
     "@vue/compiler-sfc": "^3.0.11",
     "eslint": "^7.22.0",
     "eslint-plugin-vue": "^7.8.0",
-    "sass": "^1.32.8",
+    "sass": "^1.32.11",
     "stylelint": "^13.12.0",
     "stylelint-config-recess-order": "^2.3.0",
     "stylelint-config-standard": "^21.0.0",
     "typescript": "^4.2.4",
-    "vite": "^2.1.5",
-    "vite-plugin-imp": "^2.0.5",
-    "vue-tsc": "^0.0.14"
+    "vite": "^2.2.1",
+    "vite-plugin-imp": "^2.0.7",
+    "vue-tsc": "0.0.25"
   }
 }
