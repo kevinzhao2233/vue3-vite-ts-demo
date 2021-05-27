@@ -5,7 +5,7 @@
   </el-card>
   <el-card class="card" shadow="hover">
     <template #header> 使用 axios 搜索网易云歌曲 </template>
-    <Music />
+    <!-- <Music /> -->
   </el-card>
   <el-card class="card" shadow="hover">
     <template #header> 使用 Echarts </template>
@@ -16,17 +16,21 @@
 <script>
   import { defineComponent } from 'vue'
   import Counter from './components/Counter.vue'
-  import Music from './components/Music.vue'
+  // import Music from './components/Music.vue'
   import Echarts from './components/Echarts.vue'
+  import * as api from '/@/api/index'
 
   export default defineComponent({
     name: 'Home',
     components: {
       Counter,
-      Music,
+      // Music,
       Echarts
     },
     setup() {
+      api.timeoutRequest()
+      api.successRequest()
+      api.undefinedRequest()
       return {}
     }
   })

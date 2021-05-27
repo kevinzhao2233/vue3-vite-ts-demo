@@ -1,6 +1,13 @@
-import request from '../utils/request'
+import request, { IAxiosConfig } from '../utils/request'
 
-// 只为做演示，真实项目需要在 /utils/request.ts 中封装 get 请求，并统一配置 URL
-export async function getMusic(params: { keywords: string }) {
-  return await request({ method: 'GET', url: 'https://slbb.top/api/search', params: params })
+export function timeoutRequest() {
+  return request(({ method: 'GET', url: '/timeout', global: true } as IAxiosConfig))
+}
+
+export function successRequest() {
+  return request({ method: 'GET', url: '/success' })
+}
+
+export function undefinedRequest() {
+  return request({ method: 'GET', url: '/undefined' })
 }
