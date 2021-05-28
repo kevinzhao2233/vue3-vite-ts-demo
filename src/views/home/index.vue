@@ -29,6 +29,8 @@
     },
     setup() {
       api.timeoutRequest()
+      api.timeoutRequest()
+      
       api.successRequest()
       api.undefinedRequest()
       return {}

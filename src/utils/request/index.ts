@@ -1,16 +1,17 @@
 import { ElMessage } from 'element-plus'
-import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
+import axios, { AxiosRequestConfig, AxiosInstance, AxiosPromise } from 'axios'
 import log from 'b-pretty-log'
 import { store } from '/@/store'
 import handleResponse from './handleResponse';
 import handleError from './handleError';
 
 export interface IAxiosConfig extends AxiosRequestConfig  {
-  global: boolean
+  global?: boolean
 }
 
 export interface IAxiosInstance extends AxiosInstance  {
-  clearPendingPool: () => any[]
+  (config: IAxiosConfig): AxiosPromise;
+  clearPendingPool?: () => any[]
 }
 
 const showErrorMsg = (msg: string) => {
@@ -22,7 +23,7 @@ const showErrorMsg = (msg: string) => {
 }
 
 // 创建 axios 的实例
-const service = axios.create({
+const request: IAxiosInstance = axios.create({
   baseURL: 'https://www.fastmock.site/mock/855d70fd0fb848b6abd6c1a945e7834b/api-test',
   timeout: 4000, // 超时时间
   responseType: 'json',
@@ -35,12 +36,12 @@ const pendingPool = new Map()
 /**
  * 请求拦截器
  */
-service.interceptors.request.use(
-  (config) => {
+request.interceptors.request.use(
+  (config: IAxiosConfig) => {
     // 让请求携带令牌，有些后端可能并不使用 Authorization 头部，则需要在这里改掉
     store.getters.token && (config.headers.Authorization = store.getters.token)
     config.cancelToken = new axios.CancelToken((cancelFn) => {
-      pendingPool.has(config.url) ? cancelFn(`${config.url}请求重复`) : pendingPool.set(config.url, { cancelFn, global: (config as IAxiosConfig).global })
+      pendingPool.has(config.url) ? cancelFn(`${config.url} 请求重复，已被取消`) : pendingPool.set(config.url, { cancelFn, global: config.global })
     })
     return config
   },
@@ -54,12 +55,15 @@ service.interceptors.request.use(
 /**
  * 响应拦截器
  */
-service.interceptors.response.use(
-  (response) => {
+request.interceptors.response.use(
+  (response): any => {
     // 删除 pending 池中已经拿到结果的请求
     pendingPool.delete(response.config.url)
 
-    return Promise.resolve(handleResponse(response))
+    // 每个请求都打印出来，方便调试
+    log(`resInfo -> ${response.config.url}`, response, 'success', true)
+
+    return handleResponse(response.data)
   },
   (error) => {
     // 错误信息err传入isCancel方法，可以判断请求是否被取消
@@ -109,6 +113,6 @@ service.interceptors.response.use(
 
   return pendingUrlList
 }
-(service as IAxiosInstance).clearPendingPool = clearPendingPool
+(request as IAxiosInstance).clearPendingPool = clearPendingPool
 
-export default service
+export default request

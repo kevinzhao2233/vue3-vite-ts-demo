@@ -1,7 +1,7 @@
-import request, { IAxiosConfig } from '../utils/request'
+import request from '../utils/request'
 
 export function timeoutRequest() {
-  return request(({ method: 'GET', url: '/timeout', global: true } as IAxiosConfig))
+  return request({ method: 'GET', url: '/timeout', global: false })
 }
 
 export function successRequest() {

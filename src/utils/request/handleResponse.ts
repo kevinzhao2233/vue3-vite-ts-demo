@@ -1,14 +1,12 @@
-import log from 'b-pretty-log'
-
+export interface ICustomResponse {
+  code: number,
+  data: any,
+  message: string
+}
 // ** 这里的响应数据结构依照 fastmock 平台的响应结构
 
-// 处理响应错误码
-export default (response: any) => {
-  // 每个请求都打印出来，方便调试
-  log(`resInfo -> ${response.config.url}`, response, 'success', true)
-
-  // 从 axios 封装的 response 中分离出服务器返回的 response
-  const res = response.data
+// 处理响应
+export default (res: any): ICustomResponse => {
   const code = +res.code
   let message = (res || {}).desc
   // 如果 http 响应状态码 res.code 正常，则直接返回数据
