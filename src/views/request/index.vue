@@ -1,4 +1,9 @@
 <template>
+  <el-alert
+    title="请打开控制台查看打印信息"
+    type="success"
+    show-icon
+  />
   <el-button @click="success">发送正常成功请求</el-button>
   <el-button @click="timeout">发送延时请求</el-button>
   <el-button @click="udf">发送未知请求</el-button>
