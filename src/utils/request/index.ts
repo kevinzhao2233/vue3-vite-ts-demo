@@ -25,7 +25,7 @@ const showErrorMsg = (msg: string) => {
 // 创建 axios 的实例
 const request: IAxiosInstance = axios.create({
   baseURL: 'https://www.fastmock.site/mock/855d70fd0fb848b6abd6c1a945e7834b/api-test',
-  timeout: 4000, // 超时时间
+  timeout: 5000, // 超时时间
   responseType: 'json',
   withCredentials: true // 跨域请求允许携带 cookie
 })

@@ -4,8 +4,8 @@
     <Counter />
   </el-card>
   <el-card class="card" shadow="hover">
-    <template #header> 使用 axios 搜索网易云歌曲 </template>
-    <!-- <Music /> -->
+    <template #header> 测试封装 axios </template>
+    <el-button @click="gotoRequest">去测试页面</el-button>
   </el-card>
   <el-card class="card" shadow="hover">
     <template #header> 使用 Echarts </template>
@@ -16,24 +16,22 @@
 <script>
   import { defineComponent } from 'vue'
   import Counter from './components/Counter.vue'
-  // import Music from './components/Music.vue'
   import Echarts from './components/Echarts.vue'
-  import * as api from '/@/api/index'
+  import router from '/@/router'
 
   export default defineComponent({
     name: 'Home',
     components: {
       Counter,
-      // Music,
       Echarts
     },
     setup() {
-      api.timeoutRequest()
-      api.timeoutRequest()
-      
-      api.successRequest()
-      api.undefinedRequest()
-      return {}
+      const gotoRequest = () => {
+        router.push('/request')
+      }
+      return {
+        gotoRequest
+      }
     }
   })
 </script>

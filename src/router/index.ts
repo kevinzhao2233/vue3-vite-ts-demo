@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import request, { IAxiosInstance } from '/@/utils/request';
 import Layout from '/@/layout/index.vue'
-import HelloWorld from '/@pages/home/index.vue'
+import Home from '/@pages/home/index.vue'
+import Request from '/@pages/request/index.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,8 +11,13 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/',
-        name: 'HelloWorld',
-        component: HelloWorld
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: '/request',
+        name: 'Request',
+        component: Request
       },
       {
         path: '/about',
