@@ -42,10 +42,10 @@
 
     // 模块名到基于 baseUrl的路径映射的列表。
     "paths": {
-      "/@/*": ["src/*"],
-      "/@comps/*": ["src/components/*"],
-      "/@assets/*": ["src/assets/*"],
-      "/@pages/*": ["src/views/*"],
+      "@/*": ["src/*"],
+      "@comps/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/views/*"],
     },
 
     // 编译过程中需要引入的库文件的列表。

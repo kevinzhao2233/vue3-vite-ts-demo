@@ -7,14 +7,15 @@
   </div>
 </template>
 <script lang="ts">
-  import Header from './components/Header.vue'
-  import { defineComponent } from 'vue'
-  export default defineComponent({
-    name: 'Layout',
-    components: {
-      Header
-    }
-  })
+import { defineComponent } from 'vue';
+import Header from './components/Header.vue';
+
+export default defineComponent({
+  name: 'Layout',
+  components: {
+    Header,
+  },
+});
 </script>
 <style lang="scss" scoped>
   .app-layout {

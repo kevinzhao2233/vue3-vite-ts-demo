@@ -13,27 +13,27 @@
   </el-card>
 </template>
 
-<script>
-  import { defineComponent } from 'vue'
-  import Counter from './components/Counter.vue'
-  import Echarts from './components/Echarts.vue'
-  import router from '/@/router'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Counter from './components/Counter.vue';
+import Echarts from './components/Echarts.vue';
+import router from '@/router';
 
-  export default defineComponent({
-    name: 'Home',
-    components: {
-      Counter,
-      Echarts
-    },
-    setup() {
-      const gotoRequest = () => {
-        router.push('/request')
-      }
-      return {
-        gotoRequest
-      }
-    }
-  })
+export default defineComponent({
+  name: 'Home',
+  components: {
+    Counter,
+    Echarts,
+  },
+  setup() {
+    const gotoRequest = () => {
+      router.push('/request');
+    };
+    return {
+      gotoRequest,
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
   .card {

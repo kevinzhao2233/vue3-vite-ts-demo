@@ -1,56 +1,76 @@
 module.exports = {
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 2021,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
-    }
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
   },
-  extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: ['plugin:vue/vue3-recommended', 'airbnb-base'],
+  parserOptions: {
+    ecmaVersion: 12,
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
+  },
+  plugins: ['vue', '@typescript-eslint'],
+  globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    defineExpose: 'readonly',
+    withDefaults: 'readonly',
+  },
   rules: {
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'warn',
+    'vue/multi-word-component-names': 'off',
+    'vue/max-attributes-per-line': [
+      'error',
       {
-        argsIgnorePattern: '^h$',
-        varsIgnorePattern: '^h$'
-      }
+        singleline: {
+          max: 3,
+        },
+        multiline: {
+          max: 1,
+        },
+      },
     ],
-    'vue/custom-event-name-casing': 'off',
-    'vue/max-attributes-per-line': ['error', {
-      'singleline': 3,
-      'multiline': {
-        'max': 1,
-        'allowFirstLine': false
-      }
-    }],
+    'vue/html-indent': [
+      'error',
+      2,
+      {
+        attribute: 1,
+        baseIndent: 1,
+        closeBracket: 0,
+        alignAttributesVertically: true,
+        ignores: [],
+      },
+    ],
     'vue/singleline-html-element-content-newline': 'off',
-    'no-use-before-define': 'off',
-    'no-unused-vars': [
-      'warn',
+    'vue/multiline-html-element-content-newline': 'off',
+    'vue/name-property-casing': ['error', 'PascalCase'],
+    'vue/no-v-html': 'off',
+    'vue/no-multiple-template-root': 'off',
+    'vue/no-v-model-argument': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    // TS 项目中关闭此配置，但是打开 @typescript-eslint/no-unused-vars
+    'no-unused-vars': 'off',
+    'no-param-reassign': 'off',
+    'no-unused-expressions': 'off',
+    'no-lonely-if': 'off',
+    'no-use-before-define': ['off'],
+    'prefer-promise-reject-errors': 'off',
+    'symbol-description': 'off',
+    'max-len': [
+      'error',
       {
-        argsIgnorePattern: '^h$',
-        varsIgnorePattern: '^h$'
-      }
+        code: 140,
+        ignoreComments: true,
+        ignoreTrailingComments: true,
+        ignoreStrings: true,
+        ignoreRegExpLiterals: true,
+      },
     ],
-    'space-before-function-paren': 'off',
-    'object-curly-spacing': ['error', 'always', {
-      objectsInObjects: false,
-      arraysInObjects: false
-    }],
-    'no-multiple-empty-lines': 'error',
-    quotes: ['error', 'single'],
-    'comma-dangle': ['error', 'never']
-  }
-}
+  },
+};

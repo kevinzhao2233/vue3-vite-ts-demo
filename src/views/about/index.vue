@@ -13,21 +13,21 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
-  import log from 'b-pretty-log';
+import { defineComponent, ref } from 'vue';
+import log from 'b-pretty-log';
 
-  export default defineComponent({
-    name: 'About',
-    setup() {
-      const msg = ref('关于页')
+export default defineComponent({
+  name: 'About',
+  setup() {
+    const msg = ref('关于页');
 
-      log('info', 'Component is mounted')
+    log('info', 'Component is mounted');
 
-      return {
-        msg
-      }
-    }
-  })
+    return {
+      msg,
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
   h2,

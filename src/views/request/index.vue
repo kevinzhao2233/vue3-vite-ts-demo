@@ -11,42 +11,42 @@
   <el-button @click="jump">跳转页面取消亲求</el-button>
 </template>
 
-<script>
-  import { defineComponent } from 'vue'
-  import router from '/@/router'
-  import * as api from '/@/api/index'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import router from '@/router';
+import * as api from '@/api/index';
 
-  export default defineComponent({
-    name: 'Request',
-    setup() {
-      const success = () => {
-        api.successRequest()
-      }
-      const udf = () => {
-        api.undefinedRequest()
-      }
-      const timeout = () => {
-        api.timeoutRequest()
-      }
-      const repeat = () => {
-        api.timeoutRequest()
-        api.timeoutRequest()
-      }
-      const jump = () => {
-        api.timeoutRequest()
-        setTimeout(() => {
-          router.push('/about')
-        }, 2000);
-      }
-      return {
-        success,
-        udf,
-        timeout,
-        repeat,
-        jump
-      }
-    }
-  })
+export default defineComponent({
+  name: 'Request',
+  setup() {
+    const success = () => {
+      api.successRequest();
+    };
+    const udf = () => {
+      api.undefinedRequest();
+    };
+    const timeout = () => {
+      api.timeoutRequest();
+    };
+    const repeat = () => {
+      api.timeoutRequest();
+      api.timeoutRequest();
+    };
+    const jump = () => {
+      api.timeoutRequest();
+      setTimeout(() => {
+        router.push('/about');
+      }, 2000);
+    };
+    return {
+      success,
+      udf,
+      timeout,
+      repeat,
+      jump,
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
   .card {

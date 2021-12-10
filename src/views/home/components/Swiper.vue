@@ -8,18 +8,18 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import { Swiper, SwiperSlide } from 'swiper/vue'
-  import 'swiper/swiper.scss'
+import { defineComponent } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/swiper.scss';
 
-  export default defineComponent({
-    name: 'Swiper',
-    components: {
-      Swiper,
-      SwiperSlide
-    },
-    setup() {
-      return {}
-    }
-  })
+export default defineComponent({
+  name: 'Swiper',
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {};
+  },
+});
 </script>

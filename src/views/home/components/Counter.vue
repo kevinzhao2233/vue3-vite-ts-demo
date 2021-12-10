@@ -8,25 +8,25 @@
   </div>
 </template>
 
-<script>
-  import { defineComponent, computed } from 'vue'
-  import { useStore } from 'vuex'
-  import { key } from '/@/store'
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
+import { key } from '@/store';
 
-  export default defineComponent({
-    name: 'Home',
-    setup() {
-      const store = useStore(key)
+export default defineComponent({
+  name: 'Home',
+  setup() {
+    const store = useStore(key);
 
-      const count = computed(() => store.state.count)
+    const count = computed(() => store.state.count);
 
-      return {
-        count,
-        inCrement: () => store.commit('increment'),
-        resetCrement: () => store.commit('reset')
-      }
-    }
-  })
+    return {
+      count,
+      inCrement: () => store.commit('increment'),
+      resetCrement: () => store.commit('reset'),
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
   .counter-box {

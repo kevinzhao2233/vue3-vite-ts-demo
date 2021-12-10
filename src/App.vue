@@ -2,8 +2,8 @@
   <router-view />
 </template>
 
-<script>
-  export default {
-    name: 'App'
-  }
+<script lang="ts">
+export default {
+  name: 'App',
+};
 </script>

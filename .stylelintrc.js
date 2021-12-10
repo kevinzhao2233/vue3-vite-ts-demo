@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-recess-order'],
+  extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue', 'stylelint-config-recess-order'],
   rules: {
     // "order/properties-alphabetical-order": true,
     'color-no-invalid-hex': true,
@@ -8,7 +8,6 @@ module.exports = {
     'color-hex-length': 'long',
     // 16进制颜色使用小写
     'color-hex-case': 'lower',
-    'unit-whitelist': ['em', 'rem', '%', 's', 'px', 'vh', 'vw', 'deg'],
     'declaration-colon-newline-after': null,
     // 禁止在速记属性中使用冗余值（可自动修复） padding:10px 10px 10px; 需写成 padding: 10px;
     'shorthand-property-no-redundant-values': true,
@@ -39,6 +38,12 @@ module.exports = {
     // 是否必须添加字体族 generic-family
     'font-family-no-missing-generic-family-keyword': null,
     // 是否禁止低优先级的选择器出现在高优先级选择器之后
-    'no-descending-specificity': null
+    'no-descending-specificity': null,
+    // 忽略对未知的伪类选择器进行 lint
+    'selector-pseudo-class-no-unknown': null,
+    // 使用旧版的颜色函数写法
+    'color-function-notation': 'legacy',
+    // 对 alpha 值使用数字，比如 opacity 的值
+    'alpha-value-notation': 'number'
   }
 }

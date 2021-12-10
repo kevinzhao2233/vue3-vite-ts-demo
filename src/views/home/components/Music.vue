@@ -22,39 +22,39 @@
   </ul>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, ref } from 'vue'
-  import * as api from '/@/api/index'
+import { defineComponent, reactive, ref } from 'vue';
+import * as api from '@/api';
 
-  export default defineComponent({
-    name: 'Music',
-    setup() {
-      const keywords = ref('干饭人之歌')
+export default defineComponent({
+  name: 'Music',
+  setup() {
+    const keywords = ref('干饭人之歌');
 
-      let list = reactive({ songs: []})
+    const list = reactive<{songs: any[]}>({ songs: [] });
 
-      const loading = ref(true)
+    const loading = ref(true);
 
-      const fetchMusic = () => {
-        if (!keywords.value) return
-        loading.value = true
-        api
-          .getMusic({ keywords: keywords.value })
-          .then((res: any) => {
-            list.songs = res.result.songs
-          })
-          .finally(() => {
-            loading.value = false
-          })
-      }
-      fetchMusic()
-      return {
-        loading,
-        fetchMusic,
-        keywords,
-        list
-      }
-    }
-  })
+    const fetchMusic = () => {
+      if (!keywords.value) return;
+      loading.value = true;
+      api
+        .getMusic({ keywords: keywords.value })
+        .then((res: any) => {
+          list.songs = res.result.songs;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+    };
+    fetchMusic();
+    return {
+      loading,
+      fetchMusic,
+      keywords,
+      list,
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
   .list-box {
