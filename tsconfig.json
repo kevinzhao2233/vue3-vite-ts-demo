@@ -20,7 +20,7 @@
     "moduleResolution": "node",
 
     // 启用所有严格类型检查选项。
-    // 启用 --strict相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict， 
+    // 启用 --strict相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict，
     // --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
     "strict": true,
 
@@ -30,13 +30,13 @@
     // 忽略所有的声明文件（ *.d.ts）的类型检查。
     "skipLibCheck": true,
 
-    // 指定ECMAScript目标版本 
+    // 指定 ECMAScript目标版本
     "target": "esnext",
 
     // 要包含的类型声明文件名列表
-    "types": [
+    "types": [],
 
-    ],
+    "typeRoots": [],
 
     "isolatedModules": true,
 
@@ -46,15 +46,11 @@
       "@comps/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/views/*"],
+      "*": ["typings/*"]
     },
 
     // 编译过程中需要引入的库文件的列表。
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable",
-      "ScriptHost"
-    ]
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
   },
 
   "include": [
@@ -65,7 +61,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
