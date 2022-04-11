@@ -24,6 +24,8 @@
     // --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
     "strict": true,
 
+    "jsx": "preserve",
+
     // 生成相应的 .map文件。
     "sourceMap": true,
 

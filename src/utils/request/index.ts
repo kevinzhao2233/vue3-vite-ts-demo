@@ -91,7 +91,7 @@ request.interceptors.response.use(
 );
 
 /**
- * 清除所有pending状态的请求
+ * 清除所有 pending 状态的请求
  * @param {Array} whiteList 白名单，里面的请求不会被取消
  * 返回值 被取消了的api请求
  */

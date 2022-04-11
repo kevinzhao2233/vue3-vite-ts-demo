@@ -1,16 +1,16 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
-    es2021: true,
     node: true,
   },
   extends: ['plugin:vue/vue3-recommended', 'airbnb-base'],
   parserOptions: {
-    ecmaVersion: 12,
-    parser: '@typescript-eslint/parser',
+    ecmaVersion: 'latest',
     sourceType: 'module',
+    parser: '@typescript-eslint/parser',
   },
-  plugins: ['vue', '@typescript-eslint'],
+  plugins: ['vue', '@typescript-eslint', 'import'],
   globals: {
     defineProps: 'readonly',
     defineEmits: 'readonly',
