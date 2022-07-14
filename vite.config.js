@@ -1,10 +1,13 @@
 /**
  * Vite 中文文档 https://cn.vitejs.dev/
  */
-const vue = require('@vitejs/plugin-vue');
-const path = require('path');
+import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
-module.exports = {
+import vue from '@vitejs/plugin-vue';
+import path from 'node:path';
+
+export default {
   server: {
     // 开发服务端口
     port: 10000,
@@ -12,7 +15,6 @@ module.exports = {
     https: false,
   },
   resolve: {
-    // 别名映射，2.0 版本不再需要以 / 结尾了
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@comps': path.resolve(__dirname, './src/components'),
@@ -20,8 +22,11 @@ module.exports = {
       '@pages': path.resolve(__dirname, './src/views'),
     },
   },
-  // vite2.x 不止是 vue 可以用，适配框架以插件的形式引入
+
   plugins: [
     vue(),
+    Components({
+      resolvers: [AntDesignVueResolver()],
+    }),
   ],
 };

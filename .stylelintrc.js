@@ -1,7 +1,14 @@
 module.exports = {
-  extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue', 'stylelint-config-recess-order'],
+  extends: [
+    'stylelint-config-recommended-vue',
+    'stylelint-config-recess-order'
+  ],
   rules: {
     // "order/properties-alphabetical-order": true,
+    // 指定缩进
+    'indentation': [2, { "severity": "error" }],
+    // 引号
+    'string-quotes': 'single',
     'color-no-invalid-hex': true,
     'rule-empty-line-before': null,
     // 16颜色使用长表示法

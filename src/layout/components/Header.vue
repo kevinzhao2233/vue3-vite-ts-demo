@@ -24,35 +24,26 @@
     </ul>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref, reactive } from 'vue';
+<script setup lang="ts">
+import { ref, reactive } from 'vue';
 import router from '@/router/index';
 
   interface Nav {
     name: string
     route: string
   }
-export default defineComponent({
-  name: 'Header',
-  setup() {
-    const proTitle = ref('Vue3 + Vite2 + TS + Vuex 尝试项目');
-    const navList = reactive<Nav[]>([
-      {
-        name: '关于',
-        route: '/about',
-      },
-    ]);
-    const gotoPage = (nav: Nav) => {
-      router.push(nav.route);
-    };
 
-    return {
-      proTitle,
-      navList,
-      gotoPage,
-    };
+const proTitle = ref('Vue3 + Vite3 + TS + Pinia');
+const navList = reactive<Nav[]>([
+  {
+    name: '关于',
+    route: '/about',
   },
-});
+]);
+const gotoPage = (nav: Nav) => {
+  router.push(nav.route);
+};
+
 </script>
 <style lang="scss" scoped>
   .layout-header {

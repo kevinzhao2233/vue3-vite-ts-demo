@@ -1,14 +1,14 @@
 import { createApp } from 'vue';
-import ElementPlus from 'element-plus';
+import { createPinia } from 'pinia';
 import router from './router';
-import 'element-plus/lib/theme-chalk/index.css';
-import { store, key } from './store';
 import App from './App.vue';
 import '@/styles/reset.css';
 import '@/styles/global.css';
+import '@icon-park/vue-next/styles/index.css';
 
+const pinia = createPinia();
 const app = createApp(App);
-app.use(store, key);
-app.use(ElementPlus);
+
+app.use(pinia);
 app.use(router);
 app.mount('#app');

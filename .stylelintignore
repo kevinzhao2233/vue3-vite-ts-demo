@@ -2,3 +2,5 @@ build
 src/assets
 public
 dist
+dist-ssr
+node_modules

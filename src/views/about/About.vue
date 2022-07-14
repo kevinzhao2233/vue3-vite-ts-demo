@@ -7,27 +7,18 @@
     <a href="https://next.router.vuejs.org/zh/">Vur-router4</a>、
     <a href="https://www.typescriptlang.org/zh/">Typescript4</a>、
     <a href="https://echarts.apache.org/zh/index.html">Echarts5</a>、
-    <a href="https://element-plus.org/#/zh-CN">Element-plus</a>、
     <a href="http://axios-js.com/zh-cn/docs/index.html">Axios</a>
   </p>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import log from 'b-pretty-log';
 
-export default defineComponent({
-  name: 'About',
-  setup() {
-    const msg = ref('关于页');
+const msg = ref('关于页');
 
-    log('info', 'Component is mounted');
+log('info', 'Component is mounted');
 
-    return {
-      msg,
-    };
-  },
-});
 </script>
 <style lang="scss" scoped>
   h2,

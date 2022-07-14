@@ -1,7 +1,6 @@
-import { ElMessage } from 'element-plus';
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosPromise } from 'axios';
 import log from 'b-pretty-log';
-import { store } from '@/store';
+import { useAppStore } from '@/stores/app';
 import handleResponse from './handleResponse';
 import handleError from './handleError';
 
@@ -15,11 +14,11 @@ export interface IAxiosInstance extends AxiosInstance {
 }
 
 const showErrorMsg = (msg: string) => {
-  ElMessage({
-    message: msg || 'Error: 网络请求出现错误',
-    duration: 5000,
-    type: 'error',
-  });
+  // ElMessage({
+  //   message: msg || 'Error: 网络请求出现错误',
+  //   duration: 5000,
+  //   type: 'error',
+  // });
 };
 
 // 创建 axios 的实例
@@ -38,10 +37,13 @@ const pendingPool = new Map();
  */
 request.interceptors.request.use(
   (config: IAxiosConfig) => {
+    const appSotre = useAppStore();
     // 让请求携带令牌，有些后端可能并不使用 Authorization 头部，则需要在这里改掉
-    store.getters.token && (config.headers.Authorization = store.getters.token);
+    appSotre.token && config.headers && (config.headers.Authorization = appSotre.token);
     config.cancelToken = new axios.CancelToken((cancelFn) => {
-      pendingPool.has(config.url) ? cancelFn(`${config.url} 请求重复，已被取消`) : pendingPool.set(config.url, { cancelFn, global: config.global });
+      pendingPool.has(config.url)
+        ? cancelFn(`${config.url} 请求重复，已被取消`)
+        : pendingPool.set(`${config.method}::${config.url}`, { cancelFn, global: config.global });
     });
     return config;
   },
@@ -58,10 +60,10 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response): any => {
     // 删除 pending 池中已经拿到结果的请求
-    pendingPool.delete(response.config.url);
+    pendingPool.delete(`${response.config.method}::${response.config.url}`);
 
     // 每个请求都打印出来，方便调试
-    log(`resInfo -> ${response.config.url}`, response, 'success', true);
+    log(`resInfo -> ${response.config.method}::${response.config.url}`, response, 'success', true);
 
     return handleResponse(response.data);
   },
@@ -92,7 +94,7 @@ request.interceptors.response.use(
 
 /**
  * 清除所有 pending 状态的请求
- * @param {Array} whiteList 白名单，里面的请求不会被取消
+ * @param {Array} whiteList 白名单，里面的请求不会被取消，格式为 ['get::/api/foo', 'post::/api/bar']
  * 返回值 被取消了的api请求
  */
 function clearPendingPool(whiteList: string[] = []) {

@@ -2,31 +2,24 @@
   <div class="counter-box">
     <p class="count">{{ count }}</p>
     <div class="btn-box">
-      <el-button type="primary" @click="inCrement"> + 1 </el-button>
-      <el-button @click="resetCrement">重置</el-button>
+      <a-button type="primary" @click="inCrement"> + 1 </a-button>
+      <a-button @click="resetCrement">重置</a-button>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useStore } from 'vuex';
-import { key } from '@/store';
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useAppStore } from '@/stores/app';
 
-export default defineComponent({
-  name: 'Home',
-  setup() {
-    const store = useStore(key);
+const appSotre = useAppStore();
 
-    const count = computed(() => store.state.count);
+const count = computed(() => appSotre.count);
 
-    return {
-      count,
-      inCrement: () => store.commit('increment'),
-      resetCrement: () => store.commit('reset'),
-    };
-  },
-});
+const inCrement = () => appSotre.increment();
+
+const resetCrement = () => appSotre.reset();
+
 </script>
 <style lang="scss" scoped>
   .counter-box {
