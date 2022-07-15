@@ -24,7 +24,7 @@ const showErrorMsg = (msg: string) => {
 // 创建 axios 的实例
 const request: IAxiosInstance = axios.create({
   baseURL: 'https://www.fastmock.site/mock/855d70fd0fb848b6abd6c1a945e7834b/api-test',
-  timeout: 5000, // 超时时间
+  timeout: 10000, // 超时时间
   responseType: 'json',
   withCredentials: true, // 跨域请求允许携带 cookie
 });
@@ -41,8 +41,8 @@ request.interceptors.request.use(
     // 让请求携带令牌，有些后端可能并不使用 Authorization 头部，则需要在这里改掉
     appSotre.token && config.headers && (config.headers.Authorization = appSotre.token);
     config.cancelToken = new axios.CancelToken((cancelFn) => {
-      pendingPool.has(config.url)
-        ? cancelFn(`${config.url} 请求重复，已被取消`)
+      pendingPool.has(`${config.method}::${config.url}`)
+        ? cancelFn(`${`${config.method}::${config.url}`} 请求重复，已被取消`)
         : pendingPool.set(`${config.method}::${config.url}`, { cancelFn, global: config.global });
     });
     return config;
@@ -105,6 +105,7 @@ function clearPendingPool(whiteList: string[] = []) {
   if (!pendingUrlList.length) return [];
 
   pendingUrlList.forEach((pendingUrl: string) => {
+    console.log({ pendingUrl, pendingPool });
     // 清除掉所有非全局的pending状态下的请求
     if (!pendingPool.get(pendingUrl).global) {
       pendingPool.get(pendingUrl).cancelFn();
