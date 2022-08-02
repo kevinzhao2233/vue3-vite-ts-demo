@@ -49,7 +49,7 @@ request.interceptors.request.use(
   },
   (error) => {
     showErrorMsg(error?.message || '请求格式错误');
-    log.pretty('request error', error.url, error, 'danger');
+    log.pretty('request error', `${error.method}::${error.url}`, error, 'danger');
     return Promise.reject(error);
   },
 );
@@ -69,7 +69,7 @@ request.interceptors.response.use(
   },
   (error) => {
     // 错误信息err传入isCancel方法，可以判断请求是否被取消
-    if (!axios.isCancel(error)) pendingPool.delete(error.config.url);
+    if (!axios.isCancel(error)) pendingPool.delete(`${error.config.method}::${error.config.url}`);
     if (!error) return Promise.reject(error);
     // 有 response，且返回 http 状态码
     if (error.response) {
@@ -86,7 +86,7 @@ request.interceptors.response.use(
         error.message = '连接服务器失败，请检查网络或服务器地址!';
       }
     }
-    log.pretty('response error', error?.config?.url, error?.toJSON() || error, 'danger');
+    log.pretty('response error', `${error?.config?.method}::${error?.config?.url}`, error?.toJSON() || error, 'danger');
     showErrorMsg(error?.message || '网络错误');
     return Promise.reject(error);
   },
