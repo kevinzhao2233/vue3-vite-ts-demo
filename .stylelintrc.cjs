@@ -1,14 +1,7 @@
 module.exports = {
-  extends: [
-    'stylelint-config-recommended-vue',
-    'stylelint-config-recess-order'
-  ],
+  extends: ['stylelint-config-recommended-scss', 'stylelint-config-recommended-vue', 'stylelint-config-recess-order'],
   rules: {
     // "order/properties-alphabetical-order": true,
-    // 指定缩进
-    'indentation': [2, { "severity": "error" }],
-    // 引号
-    'string-quotes': 'single',
     'color-no-invalid-hex': true,
     'rule-empty-line-before': null,
     // 16颜色使用长表示法
@@ -51,6 +44,8 @@ module.exports = {
     // 使用旧版的颜色函数写法
     'color-function-notation': 'legacy',
     // 对 alpha 值使用数字，比如 opacity 的值
-    'alpha-value-notation': 'number'
+    'alpha-value-notation': 'number',
+    // scss 文件需要加上后缀
+    'scss/at-import-partial-extension': 'always'
   }
 }

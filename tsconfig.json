@@ -14,7 +14,7 @@
     "importHelpers": true,
 
     // 指定生成哪个模块系统代码
-    "module": "esnext",
+    "module": "ESNext",
 
     // 决定如何处理模块。
     "moduleResolution": "node",
@@ -33,7 +33,7 @@
     "skipLibCheck": true,
 
     // 指定 ECMAScript目标版本
-    "target": "esnext",
+    "target": "ESNext",
 
     // 要包含的类型声明文件名列表
     "types": [],
@@ -45,9 +45,6 @@
     // 模块名到基于 baseUrl的路径映射的列表。
     "paths": {
       "@/*": ["src/*"],
-      "@comps/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@pages/*": ["src/views/*"],
       "*": ["typings/*"]
     },
 
@@ -63,5 +60,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["node_modules"]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
