@@ -1,6 +1,6 @@
 interface ImportMeta {
   env: Record<string, unknown>;
-  globEager: any;
+  glob: any;
   readonly hot?: {
     readonly data: any
 

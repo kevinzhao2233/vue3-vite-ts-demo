@@ -12,8 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import router from '@/router';
+import { useRouter } from 'vue-router';
 import * as api from '@/api/index';
+
+const router = useRouter();
 
 const success = () => {
   api.successRequest();

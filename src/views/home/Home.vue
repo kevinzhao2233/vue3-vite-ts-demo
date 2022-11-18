@@ -8,8 +8,10 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import Counter from './components/Counter.vue';
-import router from '@/router';
+
+const router = useRouter();
 
 const gotoRequest = () => {
   router.push('/request');

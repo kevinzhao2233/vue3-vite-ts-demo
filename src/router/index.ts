@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Home from '@/views/home/Home.vue';
 import Request from '@/views/request/Request.vue';
-import request, { IAxiosInstance } from '@/utils/request';
+import { basicInstance } from '@/utils/axios';
 import Layout from '@/layout/Layout.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -36,7 +36,7 @@ const router = createRouter({
 // 路由全局前置守卫
 router.beforeEach((to, from, next) => {
   // 路由变化时取消当前所有非全局的 pending 状态的请求
-  (request as IAxiosInstance).clearPendingPool?.();
+  basicInstance.clearPendingPool?.();
   next();
 });
 

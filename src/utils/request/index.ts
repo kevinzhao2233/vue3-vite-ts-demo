@@ -75,7 +75,7 @@ request.interceptors.response.use(
     if (error.response) {
       error = handleError(error);
     } else {
-      // 没有response(没有状态码)的情况
+      // 没有 response(没有状态码)的情况
       // eg: 超时、断网、请求重复被取消、主动取消请求
       // 错误信息 err 传入 isCancel 方法，可以判断请求是否被取消
       if (axios.isCancel(error)) {

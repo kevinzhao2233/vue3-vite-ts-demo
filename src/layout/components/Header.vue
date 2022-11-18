@@ -26,12 +26,14 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
-import router from '@/router/index';
+import { useRouter } from 'vue-router';
 
-  interface Nav {
-    name: string
-    route: string
-  }
+const router = useRouter();
+
+interface Nav {
+  name: string
+  route: string
+}
 
 const proTitle = ref('Vue3 + Vite3 + TS + Pinia');
 const navList = reactive<Nav[]>([
