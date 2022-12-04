@@ -1,4 +1,3 @@
-// import request from '../utils/request';
 import { basicInstance } from '@/utils/axios';
 
 export function timeoutRequest() {
@@ -19,13 +18,12 @@ export function successRequest() {
   return basicInstance.request<IRes<string>>({
     method: 'GET',
     url: '/success',
+    // 接口拦截器举例，请求拦截器在最开始执行，响应拦截器在最末尾执行
     interceptors: {
       requestInterceptors(conf) {
-        console.log('接口请求拦截');
         return conf;
       },
       responseInterceptors(res) {
-        console.log('接口响应拦截', res);
         return res;
       },
     },
