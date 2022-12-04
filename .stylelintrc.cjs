@@ -1,8 +1,16 @@
 module.exports = {
-  extends: ['stylelint-config-recommended-scss', 'stylelint-config-recommended-vue', 'stylelint-config-recess-order'],
+  extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue', 'stylelint-config-recess-order'],
   rules: {
     // "order/properties-alphabetical-order": true,
+    // 缩进 2 空格
+    'indentation': [2, {
+      'baseIndentLevel': 0,
+    }],
+    // 要求换行符或声明块的分号后面不允许有空格。
+    'declaration-block-semicolon-newline-after': 'always',
+    // 不允许无效 hex 颜色值
     'color-no-invalid-hex': true,
+
     'rule-empty-line-before': null,
     // 16颜色使用长表示法
     'color-hex-length': 'long',

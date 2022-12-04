@@ -1,10 +1,10 @@
 <template>
-  <a-card class="card" title="使用 pinia 改变计数值" :hoverable="true">
+  <NCard title="使用 pinia 改变计数值" :hoverable="true">
     <Counter />
-  </a-card>
-  <a-card class="card" title="测试封装 axios" :hoverable="true">
-    <a-button @click="gotoRequest">去测试页面</a-button>
-  </a-card>
+  </NCard>
+  <NCard title="测试封装 axios" :hoverable="true">
+    <NButton @click="gotoRequest">去测试页面</NButton>
+  </NCard>
 </template>
 
 <script setup lang="ts">
@@ -19,7 +19,7 @@ const gotoRequest = () => {
 
 </script>
 <style lang="scss" scoped>
-  .card {
+  .n-card {
     margin-bottom: 24px;
   }
 </style>

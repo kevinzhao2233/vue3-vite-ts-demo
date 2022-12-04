@@ -36,7 +36,7 @@
     "target": "ESNext",
 
     // 要包含的类型声明文件名列表
-    "types": [],
+    "types": ["naive-ui/volar"],
 
     "typeRoots": [],
 

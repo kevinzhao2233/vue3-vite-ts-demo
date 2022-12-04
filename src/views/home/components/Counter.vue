@@ -1,10 +1,10 @@
 <template>
   <div class="counter-box">
     <p class="count">{{ count }}</p>
-    <div class="btn-box">
-      <a-button type="primary" @click="inCrement"> + 1 </a-button>
-      <a-button @click="resetCrement">重置</a-button>
-    </div>
+    <NSpace>
+      <NButton type="primary" @click="inCrement"> + 1 </NButton>
+      <NButton @click="resetCrement">重置</NButton>
+    </NSpace>
   </div>
 </template>
 

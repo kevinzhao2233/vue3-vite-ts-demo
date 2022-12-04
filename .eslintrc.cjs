@@ -11,12 +11,6 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   plugins: ['vue', '@typescript-eslint', 'import'],
-  globals: {
-    defineProps: 'readonly',
-    defineEmits: 'readonly',
-    defineExpose: 'readonly',
-    withDefaults: 'readonly',
-  },
   rules: {
     'vue/multi-word-component-names': 'off',
     'vue/max-attributes-per-line': [

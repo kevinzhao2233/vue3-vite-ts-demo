@@ -84,6 +84,7 @@ class Request {
       }
 
       const url = `${config.method}::${config.url}`;
+      // TODO 使用 AbortController
       config.cancelToken = new axios.CancelToken((cancelFn) => {
         this.pendingPool.has(url)
           ? cancelFn(`${url} 请求重复，已被取消`)

@@ -1,8 +1,9 @@
 /**
  * Vite 中文文档 https://cn.vitejs.dev/
  */
+import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 
 import vue from '@vitejs/plugin-vue';
 import path from 'node:path';
@@ -22,8 +23,23 @@ export default {
 
   plugins: [
     vue(),
+    AutoImport({
+      imports: [
+        'vue',
+        {
+          'naive-ui': [
+            'useDialog',
+            'useMessage',
+            'useNotification',
+            'useLoadingBar',
+          ],
+        },
+      ],
+      dts: './src/typings/auto-imports.d.ts',
+    }),
     Components({
-      resolvers: [AntDesignVueResolver()],
+      resolvers: [NaiveUiResolver()],
+      dts: './src/typings/components.d.ts',
     }),
   ],
 };
