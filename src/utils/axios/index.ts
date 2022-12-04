@@ -7,15 +7,10 @@ export const basicInstance = new Request({
   withCredentials: true, // 跨域请求允许携带 cookie
   interceptors: {
     // 请求拦截器
-    requestInterceptors: (config) => {
-      console.log('实例请求拦截器');
-
-      return config;
-    },
+    // 设置 Token 一般在这里做
+    requestInterceptors: (config) => config,
     // 响应拦截器
-    responseInterceptors: (result) => {
-      console.log('实例响应拦截器', result);
-      return result;
-    },
+    responseInterceptors: (result) => result
+    ,
   },
 });

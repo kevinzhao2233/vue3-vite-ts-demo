@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface RequestInterceptors {
   // 请求拦截
@@ -16,7 +16,7 @@ export interface RequestConfig extends AxiosRequestConfig {
 }
 
 interface PendingPoolVal {
-  cancelFn: Canceler;
+  Abort: AbortController;
   global: boolean | undefined;
 }
 

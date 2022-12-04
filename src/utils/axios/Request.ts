@@ -27,6 +27,7 @@ class Request {
     this.interceptorsObj = config.interceptors;
     this.pendingPool = new Map();
 
+    // 全局请求拦截器
     this.instance.interceptors.request.use(
       (conf: AxiosRequestConfig) => conf,
       (error: any) => {
@@ -41,7 +42,7 @@ class Request {
       this.interceptorsObj?.requestInterceptorsCatch,
     );
 
-    // 全局响应拦截器最开始执行
+    // 全局响应拦截器
     this.instance.interceptors.response.use(
       // 因为接口的数据都在 res.data 下，所以直接返回 res.data
       (res: AxiosResponse) => {
@@ -57,14 +58,14 @@ class Request {
           // eg: 超时、断网、请求重复被取消、主动取消请求
           // 错误信息 err 传入 isCancel 方法，可以判断请求是否被取消
           if (axios.isCancel(error)) {
-            throw new axios.Cancel(error.message || '请求被取消');
-          } else if (error.stack && error.stack.includes('timeout')) {
+            return error;
+          } if (error.stack && error.stack.includes('timeout')) {
             error.message = '请求超时!';
           } else {
             error.message = '连接服务器失败，请检查网络或服务器地址!';
           }
         }
-        log.pretty('response error', `${error?.config?.method}::${error?.config?.url}`, error?.toJSON() || error, 'danger');
+        log.pretty('response error', `${error?.config?.method}::${error?.config?.url}`, error?.toJSON ? error.toJSON() : error, 'danger');
         return error;
       },
     );
@@ -78,18 +79,22 @@ class Request {
 
   request<T>(config: RequestConfig): Promise<T> {
     return new Promise((resolve, reject) => {
-      // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
+      // 如果我们为单个请求设置了拦截器，会在这里执行
       if (config.interceptors?.requestInterceptors) {
         config = config.interceptors.requestInterceptors(config);
       }
 
-      const url = `${config.method}::${config.url}`;
-      // TODO 使用 AbortController
-      config.cancelToken = new axios.CancelToken((cancelFn) => {
-        this.pendingPool.has(url)
-          ? cancelFn(`${url} 请求重复，已被取消`)
-          : this.pendingPool.set(url, { cancelFn, global: config.global });
-      });
+      const key = `${config.method}::${config.url}`;
+
+      const Abort = new AbortController();
+      config.signal = Abort.signal;
+
+      if (this.pendingPool.has(key)) {
+        Abort.abort();
+        reject(`${key} 请求重复，已被取消`);
+      } else {
+        this.pendingPool.set(key, { Abort, global: config.global });
+      }
 
       this.instance.request<any, T>(config)
         .then((res) => {
@@ -97,15 +102,14 @@ class Request {
           if (config.interceptors?.responseInterceptors) {
             res = config.interceptors.responseInterceptors<T>(res);
           }
-
           resolve(res);
         })
         .catch((err: any) => {
           reject(err);
         })
         .finally(() => {
-          url && this.pendingPool.delete(url);
-          console.log(this.pendingPool);
+          // const key = `${config.method}::${config.url}`;
+          key && this.pendingPool.delete(key);
         });
     });
   }
@@ -116,10 +120,9 @@ class Request {
     const pendingUrlList = Array.from(this.pendingPool.keys()).filter((url: string) => !whiteList?.includes(url));
 
     pendingUrlList.forEach((pendingUrl: string) => {
-      console.log({ pendingUrl, pendingPool: this.pendingPool });
       // 清除掉所有非全局的 pending 状态下的请求
       if (!this.pendingPool.get(pendingUrl)?.global) {
-        this.pendingPool.get(pendingUrl)?.cancelFn();
+        this.pendingPool.get(pendingUrl)?.Abort.abort();
         this.pendingPool.delete(pendingUrl);
       }
     });

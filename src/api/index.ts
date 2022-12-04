@@ -9,14 +9,14 @@ export function timeoutRequest() {
   });
 }
 
-interface IRes {
+interface IRes<T> {
   code: number,
-  data: string,
+  data: T,
   message: string,
 }
 
 export function successRequest() {
-  return basicInstance.request<IRes>({
+  return basicInstance.request<IRes<string>>({
     method: 'GET',
     url: '/success',
     interceptors: {
@@ -25,7 +25,7 @@ export function successRequest() {
         return conf;
       },
       responseInterceptors(res) {
-        console.log('接口响应拦截');
+        console.log('接口响应拦截', res);
         return res;
       },
     },
