@@ -19,7 +19,7 @@ const gotoRequest = () => {
 
 </script>
 <style lang="scss" scoped>
-  .n-card {
-    margin-bottom: 24px;
-  }
+.n-card {
+  margin-bottom: 24px;
+}
 </style>
