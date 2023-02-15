@@ -23,12 +23,14 @@
     "echarts": "5.4.1",
     "naive-ui": "^2.34.3",
     "pinia": "2.0.30",
+    "qs": "^6.11.0",
     "swiper": "9.0.4",
     "vue": "3.2.47",
     "vue-router": "4.1.6"
   },
   "devDependencies": {
     "@types/node": "18.13.0",
+    "@types/qs": "^6.9.7",
     "@typescript-eslint/eslint-plugin": "5.51.0",
     "@typescript-eslint/parser": "5.51.0",
     "@vitejs/plugin-vue": "4.0.0",

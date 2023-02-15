@@ -2,17 +2,20 @@
  * 定制化能力更高的 Axios 封装，具有以下特性
  * ✨ 比较好的 TS 加持
  * ✨ 有的项目不只是只有一个后端服务，所以对应请求和响应的处理是不一样的，
- * 可以通过 new Request() 产生多个实例，每个实例都能配置不同的 baseURL、timeout 等等。
+ * 可以通过 new AxiosCls() 产生多个实例，每个实例都能配置不同的 baseURL、timeout 等等。
  * ✨ 具有全局、实例、接口拦截器，满足各种特殊接口的需求（比如字节流传输等等）
  * 拦截顺序为 接口请求拦截 | 实例请求拦截器 | 全局请求拦截器 | 全局响应拦截器 | 实例响应拦截器 | 接口响应拦截
  */
 
 import axios from 'axios';
 import log from 'b-pretty-log';
-import type { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios';
-import type { PendingPool, RequestConfig, RequestInterceptors } from './types';
+import qs from 'qs';
+import type { AxiosInstance, AxiosResponse } from 'axios';
+import type {
+  PendingPool, RequestConfig, RequestConfigInternal, RequestInterceptors,
+} from './types';
 
-class Request {
+export default class AxiosCls {
   // axios 实例
   instance: AxiosInstance;
 
@@ -29,7 +32,7 @@ class Request {
 
     // 全局请求拦截器
     this.instance.interceptors.request.use(
-      (conf: AxiosRequestConfig) => conf,
+      (conf) => conf,
       (error: any) => {
         log.pretty('request error', `${error.method}::${error.url}`, error, 'danger');
         return error;
@@ -81,20 +84,19 @@ class Request {
     return new Promise((resolve, reject) => {
       // 如果我们为单个请求设置了拦截器，会在这里执行
       if (config.interceptors?.requestInterceptors) {
-        config = config.interceptors.requestInterceptors(config);
+        config = config.interceptors.requestInterceptors(config as RequestConfigInternal);
       }
 
-      const key = `${config.method}::${config.url}`;
+      const key = `${config.method}::${config.url}::${qs.stringify(config.params)}`;
 
-      const Abort = new AbortController();
-      config.signal = Abort.signal;
+      const abortController = new AbortController();
+      config.signal = abortController.signal;
 
       if (this.pendingPool.has(key)) {
-        Abort.abort();
-        reject(`${key} 请求重复，已被取消`);
-      } else {
-        this.pendingPool.set(key, { Abort, global: config.global });
+        this.pendingPool.get(key)?.abortController.abort();
+        reject(`请求重复，已取消上次的请求\n${key}`);
       }
+      this.pendingPool.set(key, { abortController, global: config.global });
 
       this.instance.request<any, T>(config)
         .then((res) => {
@@ -122,13 +124,12 @@ class Request {
     pendingUrlList.forEach((pendingUrl: string) => {
       // 清除掉所有非全局的 pending 状态下的请求
       if (!this.pendingPool.get(pendingUrl)?.global) {
-        this.pendingPool.get(pendingUrl)?.Abort.abort();
+        this.pendingPool.get(pendingUrl)?.abortController.abort();
         this.pendingPool.delete(pendingUrl);
+        console.warn(pendingUrl, '请求已被取消，原因：调用 clearPendingPool');
       }
     });
 
     return pendingUrlList;
   }
 }
-
-export default Request;

@@ -25,19 +25,23 @@ const timeout = () => {
   api.timeoutRequest();
 };
 const repeat = () => {
+  console.log('第一次发送请求');
   api.timeoutRequest();
-  api.timeoutRequest();
+  setTimeout(() => {
+    console.log('第二次发送请求');
+    api.timeoutRequest();
+  }, 200);
 };
 const jump = () => {
   api.timeoutRequest();
   setTimeout(() => {
     router.push('/about');
-  }, 2000);
+  }, 1000);
 };
 
 </script>
 <style lang="scss" scoped>
-  .n-alert {
-    margin-bottom: 24px;
-  }
+.n-alert {
+  margin-bottom: 24px;
+}
 </style>

@@ -1,8 +1,10 @@
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import type {
+  InternalAxiosRequestConfig, AxiosResponse, AxiosRequestConfig,
+} from 'axios';
 
 export interface RequestInterceptors {
   // 请求拦截
-  requestInterceptors?: (config: AxiosRequestConfig) => AxiosRequestConfig;
+  requestInterceptors?: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig;
   requestInterceptorsCatch?: (err: any) => any;
   // 响应拦截
   responseInterceptors?: <T = AxiosResponse>(config: T) => T;
@@ -15,8 +17,13 @@ export interface RequestConfig extends AxiosRequestConfig {
   global?: boolean;
 }
 
+export interface RequestConfigInternal extends InternalAxiosRequestConfig {
+  interceptors?: RequestInterceptors;
+  global?: boolean;
+}
+
 interface PendingPoolVal {
-  Abort: AbortController;
+  abortController: AbortController;
   global: boolean | undefined;
 }
 
