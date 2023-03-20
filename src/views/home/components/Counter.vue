@@ -1,10 +1,10 @@
 <template>
   <div class="counter-box">
     <p class="count">{{ count }}</p>
-    <NSpace>
-      <NButton type="primary" @click="inCrement"> + 1 </NButton>
-      <NButton @click="resetCrement">重置</NButton>
-    </NSpace>
+    <a-space>
+      <a-button type="primary" @click="inCrement"> + 1 </a-button>
+      <a-button @click="resetCrement">重置</a-button>
+    </a-space>
   </div>
 </template>
 
@@ -22,15 +22,15 @@ const resetCrement = () => appSotre.reset();
 
 </script>
 <style lang="scss" scoped>
-  .counter-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.counter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    .count {
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
+  .count {
+    margin-bottom: 12px;
+    font-size: 20px;
   }
+}
 </style>

@@ -20,9 +20,9 @@ log('info', 'Component is mounted');
 
 </script>
 <style lang="scss" scoped>
-  h2,
-  p {
-    line-height: 5;
-    text-align: center;
-  }
+h2,
+p {
+  line-height: 5;
+  text-align: center;
+}
 </style>

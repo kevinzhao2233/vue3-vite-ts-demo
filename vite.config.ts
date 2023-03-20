@@ -3,8 +3,9 @@
  */
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
+import { NaiveUiResolver, AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import vue from '@vitejs/plugin-vue';
 import path from 'node:path';
 
@@ -23,23 +24,33 @@ export default {
 
   plugins: [
     vue(),
+    vueJsx(),
     AutoImport({
       imports: [
         'vue',
-        {
-          'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar',
-          ],
-        },
       ],
       dts: './src/typings/auto-imports.d.ts',
     }),
     Components({
-      resolvers: [NaiveUiResolver()],
+      resolvers: [NaiveUiResolver(), AntDesignVueResolver()],
       dts: './src/typings/components.d.ts',
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        // includePaths: ["node_modules/"],
+      },
+    },
+  },
+  build: {
+    terserOptions: {
+      // 生产环境下移除 debugger console
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
 };

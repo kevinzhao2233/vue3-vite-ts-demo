@@ -1,10 +1,10 @@
 <template>
-  <NCard title="使用 pinia 改变计数值" :hoverable="true">
+  <a-card title="使用 pinia 改变计数值" :hoverable="true">
     <Counter />
-  </NCard>
-  <NCard title="测试封装 axios" :hoverable="true">
+  </a-card>
+  <a-card title="测试封装 axios" :hoverable="true">
     <NButton @click="gotoRequest">去测试页面</NButton>
-  </NCard>
+  </a-card>
 </template>
 
 <script setup lang="ts">
